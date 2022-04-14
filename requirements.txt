@@ -1,0 +1,4 @@
+pandas
+fsspec
+requests
+plotly
