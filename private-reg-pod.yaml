@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg-17
+spec:
+  containers:
+  - name: private
+    image: henrikvdv/cryptoapp:0.1
+  imagePullSecrets:
+  - name: regcred
