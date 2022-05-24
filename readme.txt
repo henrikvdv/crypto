@@ -19,7 +19,9 @@ docker login
 
 
 docker build -t henrikvdv/cryptoapp:latest .
-kubectl create deployment kubernetes-crypto-aaa --image=henrikvdv/cryptoapp:latest
+docker login
+docker push henrikvdv/cryptoapp:latest
+kubectl create deployment kubernetes-crypto-aaa --image=henrikvdv/cryptoapp:0.1
 kubectl scale deploy kubernetes-crypto-aaa --replicas=4
 kubectl describe po
 
