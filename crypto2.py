@@ -19,11 +19,11 @@ def get_crypto_price(symbol, exchange, start_date=None):
     df = pd.DataFrame(raw_df["Time Series (Digital Currency Daily)"]).T
     df = df.rename(
         columns={
-            "1a. open (USD)": "open",
-            "2a. high (USD)": "high",
-            "3a. low (USD)": "low",
-            "4a. close (USD)": "close",
-            "5. volume": "volume",
+            f"1a. open ({exchange})": "open",
+            f"2a. high ({exchange})": "high",
+            f"3a. low ({exchange})": "low",
+            f"4a. close ({exchange})": "close",
+            f"5. volume": "volume",
         }
     )
     for i in df.columns:
@@ -31,11 +31,11 @@ def get_crypto_price(symbol, exchange, start_date=None):
     df.index = pd.to_datetime(df.index)
     df = df.iloc[::-1].drop(
         [
-            "1b. open (USD)",
-            "2b. high (USD)",
-            "3b. low (USD)",
-            "4b. close (USD)",
-            "6. market cap (USD)",
+            f"1b. open ({exchange})",
+            f"2b. high ({exchange})",
+            f"3b. low ({exchange})",
+            f"4b. close ({exchange})",
+            f"6. market cap ({exchange})",
         ],
         axis=1,
     )
