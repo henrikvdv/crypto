@@ -40,26 +40,40 @@ def give_advise(close_values, threshold_sell, threshold_buy):
 
 
 def run_all(crypto_1: str, crypto_2: str):
-
     exchange = 'USD'
     start_date = '2020-01-01'
     data_1 = get_crypto_price(symbol=crypto_1,
-                                exchange=exchange,
-                                start_date=start_date)
+                              exchange=exchange,
+                              start_date=start_date)
     data_2 = get_crypto_price(symbol=crypto_2,
-                                exchange=exchange,
-                                start_date=start_date)
+                              exchange=exchange,
+                              start_date=start_date)
 
     close_1 = list(data_1["close"].values)
     close_2 = list(data_2["close"].values)
 
-    ratio = np.array(close_2)/np.array(close_1)
+    ratio = np.array(close_2) / np.array(close_1)
+    ratio_name = f"{crypto_2} / {crypto_1}"
     date = list(data_1.index.values)
 
-    # plot
-    fig = px.scatter(x=date, y=ratio)
+    plot_ratio = plot_time_series(date, ratio, ratio_name)
+    plot_1 = plot_time_series(date, close_1, crypto_1)
+    plot_2 = plot_time_series(date, close_2, crypto_2)
 
     # advice
     advice = give_advise(ratio, 0.01, 0.01)
-    return fig, advice
+    return plot_ratio, advice, plot_1, plot_2
 
+
+def plot_time_series(date, ratio, ratio_name):
+    # plot
+    fig = px.scatter(
+        x=date,
+        y=ratio
+    )
+    fig.update_layout(
+        title=ratio_name,
+        xaxis_title="Date",
+        yaxis_title=ratio_name
+    )
+    return fig
