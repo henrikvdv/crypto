@@ -8,7 +8,7 @@ http://localhost:8501/
 
 kubernetes # todo: move this
 minikube start
-
+# start docker
 
 docker login
 
