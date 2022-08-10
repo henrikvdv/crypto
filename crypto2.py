@@ -14,6 +14,8 @@ def get_crypto_price(symbol, exchange, start_date=None):
         f"apikey={api_key}"
     )
     raw_df = requests.get(api_url).json()
+    if (type(raw_df) == dict) and ("Note" in raw_df.keys()):
+        raise ValueError(f"data could not be parsed. {raw_df}")
     df = pd.DataFrame(raw_df["Time Series (Digital Currency Daily)"]).T
     df = df.rename(
         columns={
