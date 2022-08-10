@@ -1,3 +1,5 @@
+from typing import List
+
 import numpy as np
 import requests
 import pandas as pd
@@ -72,19 +74,25 @@ def run_all(crypto_1: str, crypto_2: str):
     ratio_name = f"{crypto_2} / {crypto_1}"
     date = list(data_1.index.values)
 
-    plot_ratio = plot_time_series(date, ratio, ratio_name)
-    plot_1 = plot_time_series(date, close_1, crypto_1)
-    plot_2 = plot_time_series(date, close_2, crypto_2)
+    plot_ratio = plot_time_series(date, ratio, ratio_name, None)
+    plot_1 = plot_time_series(date, close_1, crypto_1, exchange)
+    plot_2 = plot_time_series(date, close_2, crypto_2, exchange)
 
     # advice
     advice = give_advise(ratio, 0.01, 0.01)
     return plot_ratio, advice, plot_1, plot_2
 
 
-def plot_time_series(date, ratio, ratio_name):
+def plot_time_series(
+    date: List[np.datetime64],
+    ratio: List[np.float],
+    graph_name: str,
+    exchange: str,
+) -> px.scatter:
     # plot
     fig = px.scatter(x=date, y=ratio)
-    fig.update_layout(
-        title=ratio_name, xaxis_title="Date", yaxis_title=ratio_name
-    )
+    name = graph_name
+    if exchange != None:
+        name = f"{graph_name} ({exchange})"
+    fig.update_layout(title=graph_name, xaxis_title="Date", yaxis_title=name)
     return fig
