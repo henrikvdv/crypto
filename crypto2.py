@@ -59,7 +59,7 @@ def give_advise(close_values, threshold_sell, threshold_buy):
 
 def run_all(crypto_1: str, crypto_2: str):
     exchange = "USD"
-    start_date = "2020-01-01"
+    start_date = "2021-01-01"
     data_1 = get_crypto_price(
         symbol=crypto_1, exchange=exchange, start_date=start_date
     )
