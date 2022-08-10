@@ -1,12 +1,11 @@
+import numpy as np
 import requests
 import pandas as pd
 import plotly.express as px
+from cachetools import cached, TTLCache
 
 
-def get_crypto_price_csv():
-    return pd.read_csv("btc.csv", sep=";")
-
-
+@cached(cache=TTLCache(maxsize=1024, ttl=600))
 def get_crypto_price(symbol, exchange, start_date=None):
     api_key = 'YOUR API KEY'
     api_url = f'https://www.alphavantage.co/query?function=DIGITAL_' \
@@ -40,29 +39,27 @@ def give_advise(close_values, threshold_sell, threshold_buy):
     return advice
 
 
-def run_all(is_load_online: bool,
-            crypto_1: str):
-    # get data
-    if is_load_online:
-        btc = get_crypto_price(symbol=crypto_1, exchange='USD',
-                               start_date='2020-01-01')
-    else:
-        btc = get_crypto_price_csv()
+def run_all(crypto_1: str, crypto_2: str):
 
-    close = list(btc["close"].values)
-    date = list(btc.index.values)
+    exchange = 'USD'
+    start_date = '2020-01-01'
+    data_1 = get_crypto_price(symbol=crypto_1,
+                                exchange=exchange,
+                                start_date=start_date)
+    data_2 = get_crypto_price(symbol=crypto_2,
+                                exchange=exchange,
+                                start_date=start_date)
+
+    close_1 = list(data_1["close"].values)
+    close_2 = list(data_2["close"].values)
+
+    ratio = np.array(close_2)/np.array(close_1)
+    date = list(data_1.index.values)
 
     # plot
-    fig = px.scatter(x=date, y=close)
+    fig = px.scatter(x=date, y=ratio)
 
     # advice
-    advice = give_advise(close, 0.01, 0.01)
+    advice = give_advise(ratio, 0.01, 0.01)
     return fig, advice
 
-
-if __name__ == "__main__":
-    for crypto in ["ETH", "BTC"]:
-        is_load_online = True
-        fig, advice = run_all(is_load_online, crypto)
-        fig.show()
-        print("advice is to {}".format(advice))
