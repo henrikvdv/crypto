@@ -10,6 +10,6 @@ print("selected: {}, {}".format(selected_crypto_1, selected_crypto_2))
 fig, advice, fig_1, fig_2 = run_all(
     crypto_1=selected_crypto_1, crypto_2=selected_crypto_2
 )
-st.plotly_chart(fig)
-st.plotly_chart(fig_1)
-st.plotly_chart(fig_2)
+st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig_1, use_container_width=True)
+st.plotly_chart(fig_2, use_container_width=True)
