@@ -47,11 +47,10 @@ def get_crypto_price(symbol, exchange, start_date=None):
     return df
 
 
-def give_advise(close_values, threshold_sell, threshold_buy):
-    ratio = close_values[-1] / close_values[-2]
-    if ratio > threshold_sell:
+def give_advise(close_values: List[float]) -> str:
+    if close_values[-1] > close_values[-2]:
         advice = "sell"
-    elif ratio < threshold_buy:
+    elif close_values[-1] < close_values[-2]:
         advice = "buy"
     else:
         advice = "do nothing"
@@ -80,7 +79,7 @@ def run_all(crypto_1: str, crypto_2: str):
     plot_2 = plot_time_series(date, close_2, crypto_2, exchange)
 
     # advice
-    advice = give_advise(ratio, 0.01, 0.01)
+    advice = give_advise(ratio)
     return plot_ratio, advice, plot_1, plot_2
 
 
