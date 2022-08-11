@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from crypto import run_all
+from crypto.crypto_functions import run_all
 
 symbols = list(pd.read_csv("crypto_symbols.csv", sep=";")["Symbol"])
 col1, col2 = st.columns(2)

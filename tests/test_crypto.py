@@ -1,6 +1,6 @@
 import numpy as np
 
-from crypto import give_advise
+from crypto.crypto_functions import give_advise
 
 
 def test_give_advise():

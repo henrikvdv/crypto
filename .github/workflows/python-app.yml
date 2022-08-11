@@ -33,4 +33,11 @@ jobs:
         flake8 . --count --show-source --statistics --max-line-length=79
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest --cov
+
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.xml # optional
+        flags: unittests # optional
+        name: codecov-umbrella
