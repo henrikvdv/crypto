@@ -42,6 +42,6 @@ jobs:
         flags: unittests # optional
         name: codecov-umbrella
 
-    - name: uploade codecov
+    - name: upload codecov
       run: |
-        curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
+        curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codeco
