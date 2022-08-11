@@ -11,8 +11,8 @@ from cachetools import cached, TTLCache
 def get_crypto_price(symbol, exchange, start_date=None):
     api_key = "YOUR API KEY"
     api_url = (
-        f"https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol={symbol}&market={exchange}&"
-        f"apikey={api_key}"
+        f"https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY"
+        f"&symbol={symbol}&market={exchange}&apikey={api_key}"
     )
     raw_df = requests.get(api_url).json()
     if (type(raw_df) == dict) and ("Note" in raw_df.keys()):
