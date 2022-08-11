@@ -89,9 +89,9 @@ def plot_time_series(
     ratio: List[np.float],
     graph_name: str,
     exchange: str,
-) -> px.scatter:
+) -> px.line:
     # plot
-    fig = px.scatter(x=date, y=ratio)
+    fig = px.line(x=date, y=ratio)
     name = graph_name
     if exchange != None:
         name = f"{graph_name} ({exchange})"
