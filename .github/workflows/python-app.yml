@@ -43,5 +43,6 @@ jobs:
         name: codecov-umbrella
 
     - name: upload codecov
-      run: |
-        curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codeco
+      run: | 
+        curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
+        
