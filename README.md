@@ -1,3 +1,7 @@
+[![Build](https://github.com/henrikvdv/crypto/actions/workflows/python-app.yml/badge.svg)](https://github.com/henrikvdv/crypto)
+
+
+
 build docker image:
 docker build -t cryptoapp:latest -f docker/Dockerfile .
 
