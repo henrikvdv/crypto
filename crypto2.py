@@ -1,9 +1,9 @@
 from typing import List
 
 import numpy as np
-import requests
 import pandas as pd
 import plotly.express as px
+import requests
 from cachetools import cached, TTLCache
 
 
@@ -19,6 +19,7 @@ def get_crypto_price(symbol, exchange, start_date=None):
     if (type(raw_df) == dict) and ("Note" in raw_df.keys()):
         raise ValueError(f"data could not be parsed. {raw_df}")
     df = pd.DataFrame(raw_df["Time Series (Digital Currency Daily)"]).T
+
     df = df.rename(
         columns={
             f"1a. open ({exchange})": "open",
