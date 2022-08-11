@@ -12,7 +12,3 @@ def test_give_advise():
 
     result = give_advise([1, 1, 1])
     np.testing.assert_equal(result, "do nothing")
-
-
-def test_failing_test():
-    np.testing.assert_equal(True, False)
