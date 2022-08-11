@@ -26,7 +26,7 @@ def get_crypto_price(symbol, exchange, start_date=None):
             f"2a. high ({exchange})": "high",
             f"3a. low ({exchange})": "low",
             f"4a. close ({exchange})": "close",
-            f"5. volume": "volume",
+            "5. volume": "volume",
         }
     )
     for i in df.columns:
@@ -92,7 +92,7 @@ def plot_time_series(
     # plot
     fig = px.line(x=date, y=ratio)
     name = graph_name
-    if exchange != None:
+    if exchange is not None:
         name = f"{graph_name} ({exchange})"
     fig.update_layout(title=graph_name, xaxis_title="Date", yaxis_title=name)
     return fig
