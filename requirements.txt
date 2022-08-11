@@ -4,3 +4,4 @@ requests~=2.27.1
 plotly~=5.7.0
 streamlit~=1.9.0
 watchdog~=2.1.7
+pytest~=7.1.2
