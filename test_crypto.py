@@ -14,5 +14,6 @@ def test_give_advise():
     np.testing.assert_equal(result, "do nothing")
 
 
-def test_failing_test():
+def test_failing_test_should_fail():
+    print("ha")
     np.testing.assert_equal(True, False)
