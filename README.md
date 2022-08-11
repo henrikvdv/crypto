@@ -1,4 +1,4 @@
-[![Build](https://github.com/henrikvdv/crypto/actions/workflows/python-app.yml/badge.svg)](https://github.com/henrikvdv/crypto)
+[![Build](https://github.com/henrikvdv/crypto/actions/workflows/python-app.yml/badge.svg)](https://github.com/henrikvdv/crypto/actions/workflows/python-app.yml?query=branch%3Amaster)
 
 
 
