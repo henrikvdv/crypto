@@ -41,3 +41,7 @@ jobs:
         files: ./coverage.xml # optional
         flags: unittests # optional
         name: codecov-umbrella
+
+    - name: uploade codecov
+      run: |
+        curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
